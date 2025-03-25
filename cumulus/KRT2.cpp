@@ -169,11 +169,6 @@ bool KRT2::send( QByteArray& data )
       return false;
     }
 
-  // Start sequence
-  const char* begin="nsTC";
-
-  data.insert(0, begin );
-
   int bytes = m_socket->write( data.data(), data.size() );
   m_socket->flush();
 
@@ -256,7 +251,7 @@ void KRT2::slotHandleRxData()
   while( true )
     {
       // read message data
-      quint64 read = m_socket->read( buffer, sizeof( buffer-1 ) );
+      qint64 read = m_socket->read( buffer, sizeof( buffer-1 ) );
 
       if( read == 0 )
         {
@@ -293,12 +288,11 @@ void KRT2::slotHandleRxData()
               case RCQ:
                 {
                   // Respond to connection query.
-                  char answer = 0x01;
-                  mutex.lock();
-                  qint64 res = m_socket->write( &answer, 1);
-                  mutex.unlock();
+                  QByteArray answer( 1, 0x1 );
+                  bool res = send( answer );
                   qDebug() << "sending 0x01 to KRT2, result=" << res;
                   rxBuffer.remove( 0 , 1 );
+                  m_sychronized = true;
                   break;
                 }
 
@@ -317,6 +311,10 @@ void KRT2::slotHandleRxData()
                   }
 
                 break;
+
+              case '\n':
+        	// Alive from XCVario, can be ignored
+        	break;
 
               default:
                 // Unknown rx data, clear the rx buffer
