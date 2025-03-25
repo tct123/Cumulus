@@ -2561,7 +2561,7 @@ void MainWindow::slotKRT2()
     {
       m_krt2 = new KRT2( this, ip, port );
     }
-  else if( active == false )
+  else if( m_krt2 != 0 && active == false )
     {
       m_krt2->close();
       m_krt2->deleteLater();
@@ -2569,8 +2569,12 @@ void MainWindow::slotKRT2()
     }
   else if( m_krt2Ip != ip || m_krt2Port != port )
     {
-      m_krt2->close();
-      m_krt2->deleteLater();
+      if( m_krt2 != 0 )
+	{
+	  m_krt2->close();
+	  m_krt2->deleteLater();
+	}
+
       m_krt2 = new KRT2( this, ip, port );
     }
 
