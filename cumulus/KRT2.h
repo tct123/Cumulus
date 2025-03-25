@@ -26,6 +26,8 @@ class KRT2 : public QObject
 {
   Q_OBJECT
 
+  KRT2() = delete;
+
  private:
 
   Q_DISABLE_COPY ( KRT2 )
@@ -63,34 +65,6 @@ class KRT2 : public QObject
    */
   bool splitFreqency( const float fin, uint8_t& mhz, uint8_t& channel );
 
- private slots:
-
-  /**
-   * Handle KRT-2 message.
-   */
-  void handleKRTMessage( QByteArray& data );
-
-  private:
-
-  // WiFi data
-  QString m_ip;
-  QString m_port;
-  bool m_active;
-
-  // RX handler thread of KRT2
-  KRT2Thread* krt2;
-};
-
-class KRT2Thread : public QThread
-{
-  Q_OBJECT
-
- public:
-
-  KRT2Thread( QObject *parent, QString ip, QString port );
-
-  virtual ~KRT2Thread();
-
   /**
    * Send the passed data to the KRT-2 device.
    *
@@ -99,83 +73,56 @@ class KRT2Thread : public QThread
    */
   bool send( QByteArray& data );
 
- protected:
-
   /**
-   * That is the main method of the thread.
+   * Close the socket connection.
    */
-  void run();
-
- private:
-
-  /**
-   * Try to establish the connection to the KRT2 device.
-   */
-  bool connect();
-
-  /**
-   * Handle data coming in from the KRT2 device.
-   *
-   * returns true, if all necessary data are received, otherwise false.
-   */
-  bool handleSTX();
+  void close();
 
  public slots:
 
-  /**
-   * Wrapper to connect by slot.
-   */
-  void slotConnect()
-  {
-    connect();
-  }
-
-  void slotSend( QByteArray data )
-  {
-    send( data );
-  }
+   /**
+    * Try to establish the connection to the KRT2 device.
+    */
+   void slotConnect();
 
  private slots:
 
   /**
-   * Called by the socket notifier, when data are received from the KRT2 device.
-   */
-  void handleRxData( int type );
+  * Setup a ping slot for KRT2 alive check.
+  */
+  void slotPing();
 
   /**
-   * Called by the socket notifier, when an exception is received.
+   * Called by the socket, when data are received from the KRT2 device.
    */
-  void handleException( int type );
+  void slotHandleRxData();
 
   /**
-   * Retries connection after timeout.
+   * Handle disconnected signal.
    */
-  void slotRetry()
-  {
-    connect();
-  }
-
-  /**
-   * Handles end of thread.
-   */
-  void slotFinished();
+  void slotDisconnected();
 
  signals:
 
-  void forwardDeviceError( QString error );
+   void forwardDeviceError( QString error );
 
- private:
+  private:
 
+   /**
+    * Handle data coming in from the KRT2 device.
+    *
+    * returns true, if all necessary data are received, otherwise false.
+    */
+   bool handleSTX();
+
+  // WiFi data
   QString m_ip;
   QString m_port;
   bool m_connected;
+  bool m_sychronized;
+  QTcpSocket *m_socket;
 
   QQueue<QByteArray> m_txQueue;
-
-  QTcpSocket *m_socket;
-  QSocketNotifier* m_snRX;
-  QSocketNotifier* m_snExcept;
   QByteArray rxBuffer;
   QMutex mutex;
 };
-

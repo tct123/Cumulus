@@ -2563,12 +2563,14 @@ void MainWindow::slotKRT2()
     }
   else if( active == false )
     {
-      delete m_krt2;
+      m_krt2->close();
+      m_krt2->deleteLater();
       m_krt2 = 0;
     }
   else if( m_krt2Ip != ip || m_krt2Port != port )
     {
-      delete m_krt2;
+      m_krt2->close();
+      m_krt2->deleteLater();
       m_krt2 = new KRT2( this, ip, port );
     }
 
