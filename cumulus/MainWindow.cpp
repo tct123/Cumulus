@@ -2557,25 +2557,29 @@ void MainWindow::slotKRT2()
   QString port = conf->getGpsWlanPort3();
   bool active = GeneralConfig::instance()->getGpsWlanCB3();
 
-  if( m_krt2 == 0 && active == true )
+  if( active == true )
     {
-      m_krt2 = new KRT2( this, ip, port );
+      if( m_krt2 == 0 )
+	{
+	  // No KRT2 is active
+	  m_krt2 = new KRT2( this, ip, port );
+	}
+      else if( m_krt2Ip != ip || m_krt2Port != port )
+	{
+	  // IP data was changed
+	  m_krt2->close();
+	  m_krt2->deleteLater();
+	  m_krt2 = new KRT2( this, ip, port );
+	}
     }
-  else if( m_krt2 != 0 && active == false )
-    {
-      m_krt2->close();
-      m_krt2->deleteLater();
-      m_krt2 = 0;
-    }
-  else if( m_krt2Ip != ip || m_krt2Port != port )
+  else // active is false
     {
       if( m_krt2 != 0 )
 	{
 	  m_krt2->close();
 	  m_krt2->deleteLater();
+	  m_krt2 = 0;
 	}
-
-      m_krt2 = new KRT2( this, ip, port );
     }
 
   // store last configuration
