@@ -36,7 +36,6 @@ KRT2::KRT2( QObject *parent, QString ip, QString port ) :
   m_sychronized(false),
   m_socket(nullptr)
 {
-  qDebug() << "KRT2::KRT2() is called: " << QThread::currentThreadId();
   setObjectName( "KRT2" );
   slotConnect();
 }
@@ -107,7 +106,6 @@ void KRT2::slotConnect()
  */
 void KRT2::slotDisconnected()
 {
-  qDebug() << "KRT2::slotDisconnected() is called()";
   close();
   m_socket->deleteLater();
 }
@@ -132,7 +130,7 @@ bool KRT2::send( QByteArray& data )
   int bytes = m_socket->write( data.data(), data.size() );
   m_socket->flush();
 
-  qDebug() << "Bytes" << bytes << "written";
+  // qDebug() << "Bytes" << bytes << "written";
 
   if( bytes == data.size() )
     {
@@ -195,9 +193,6 @@ bool KRT2::sendFrequency( const uint8_t cmd,
     }
 
   msg.append( mhz ^ channel );
-
-  qDebug() << "sendFrequency" << msg.toHex();
-
   send( msg );
   return true;
 }
@@ -312,8 +307,14 @@ void KRT2::slotHandleRxData()
                 }
 
               case ACK:
+                // Received a response to a normal user command (STX)
+                qDebug() << "Received ACK" << rxBuffer.at(0);
+                rxBuffer.remove( 0 , 1 );
+                break;
+
               case NAK:
                 // Received a response to a normal user command (STX)
+                qDebug() << "Received NAK" << rxBuffer.at(0);
                 rxBuffer.remove( 0 , 1 );
                 break;
 
@@ -441,16 +442,11 @@ bool KRT2::splitFreqency( const float fin, uint8_t& mhz, uint8_t& channel )
 
    mhz = parts.at(0).toShort();
 
-   qDebug() << "MHz=" << mhz;
-
    short khz = parts.at(1).toShort();
-
-   qDebug() << "Khz=" << khz;
 
    if( (khz % 5) == 0 && (khz % 25 != 20) )
      {
        channel = khz / 5;
-       qDebug() << "splitFreqency returned true";
        return true;
      }
 
