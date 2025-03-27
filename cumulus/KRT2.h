@@ -49,6 +49,15 @@ class KRT2 : public QObject
   bool setStandbyFrequency( const float frequency,
                             const QString& name );
 
+  /** Called, to switch the frequencies active/standby on the KRT2 radio. */
+  void exchangeFrequency();
+
+  /** Activate dual mode */
+  void activateDualMode();
+
+  /** Deactivate dual mode */
+  void deactivateDualMode();
+
   /**
    * Sends the command to the KRT2 device.
    */
@@ -64,6 +73,16 @@ class KRT2 : public QObject
    * @return
    */
   bool splitFreqency( const float fin, uint8_t& mhz, uint8_t& channel );
+
+  /**
+   * Returns the connection flag.
+   *
+   * @return true in case of connected otherwise false.
+   */
+  bool connected()
+    {
+      return m_connected;
+    }
 
   /**
    * Send the passed data to the KRT-2 device.
@@ -88,11 +107,6 @@ class KRT2 : public QObject
  private slots:
 
   /**
-  * Setup a ping slot for KRT2 alive check.
-  */
-  void slotPing();
-
-  /**
    * Called by the socket, when data are received from the KRT2 device.
    */
   void slotHandleRxData();
@@ -107,6 +121,9 @@ class KRT2 : public QObject
    void forwardDeviceError( QString error );
 
   private:
+
+   /** Replace umlauts and other non ascii charcters. */
+   QString replaceUmlauts( QString string );
 
    /**
     * Handle data coming in from the KRT2 device.

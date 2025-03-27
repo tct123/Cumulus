@@ -93,6 +93,11 @@ MapConfig *_globalMapConfig = static_cast<MapConfig *> (0);
 MapView *_globalMapView = static_cast<MapView *> (0);
 
 /**
+ * KRT2 driver interface.
+ */
+KRT2 * MainWindow::m_krt2 = static_cast<KRT2 *> (0);
+
+/**
  * Contains the root window flag.
  */
 bool MainWindow::m_rootWindow = true;
@@ -198,7 +203,6 @@ MainWindow::MainWindow( Qt::WindowFlags flags ) :
 #ifdef INTERNET
   m_liveTrackLogger(0),
 #endif
-  m_krt2(0),
   m_krt2Active(false),
   m_firstStartup( false )
 {

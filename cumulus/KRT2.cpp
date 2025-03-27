@@ -100,46 +100,6 @@ void KRT2::slotConnect()
   data.append( "!krt2" );
   send( data );
   qDebug() << "KRT2::slotConnect(): sending !krt2";
-
-  // QTimer::singleShot( 5000, this, SLOT(slotPing()));
-}
-
-
-/**
-* Setup a ping slot for KRT2 alive check.
-*/
-void KRT2::slotPing()
-{
-  qDebug() << "KRT2::slotPing() is called, m_connected=" << m_connected;
-
-  qDebug() << "sending Frequency 127.005";
-
-  static bool doit = true;
-
-  if( doit )
-    {
-      doit = false;
-      setActiveFrequency( 127.005, "Axel" );
-      QTimer::singleShot( 10000, this, SLOT(slotPing()));
-      setStandbyFrequency( 122.0, "Paule" );
-      QThread::sleep(3);
-      QByteArray ba;
-      ba.append( 0x2 );
-      ba.append( 0x43 );
-      send( ba );
-    }
-
-  return;
-
-  if( m_connected == true )
-    {
-      m_sychronized = false;
-
-      QByteArray tx;
-      tx.append( "S" );
-      send( tx );
-      //QTimer::singleShot( 2000, this, SLOT(slotPing()));
-    }
 }
 
 /**
@@ -214,11 +174,14 @@ bool KRT2::sendFrequency( const uint8_t cmd,
   msg.append( mhz );
   msg.append( channel );
 
-  if( name.size() <= MAX_NAME_LENGTH )
-    {
-      msg.append( name.toLatin1() );
+  // KRT2 can only handle ASCII characters
+  QString checked = replaceUmlauts( name );
 
-      for( int i=name.size(); i < MAX_NAME_LENGTH; i++ )
+  if( checked.size() <= MAX_NAME_LENGTH )
+    {
+      msg.append( checked.toLatin1() );
+
+      for( int i=checked.size(); i < MAX_NAME_LENGTH; i++ )
         {
           // Channel name is always 8 characters long
           {
@@ -228,7 +191,7 @@ bool KRT2::sendFrequency( const uint8_t cmd,
     }
   else
     {
-      msg.append( name.left( MAX_NAME_LENGTH ).toLatin1() );
+      msg.append( checked.left( MAX_NAME_LENGTH ).toLatin1() );
     }
 
   msg.append( mhz ^ channel );
@@ -237,6 +200,61 @@ bool KRT2::sendFrequency( const uint8_t cmd,
 
   send( msg );
   return true;
+}
+
+/** Activate dual mode */
+void KRT2::activateDualMode()
+{
+  QByteArray msg;
+  msg.append( STX );
+  msg.append( DUAL_ON );
+  send( msg );
+}
+
+/** Deactivate dual mode */
+void KRT2::deactivateDualMode()
+{
+  QByteArray msg;
+  msg.append( STX );
+  msg.append( DUAL_OFF );
+  send( msg );
+}
+
+QString KRT2::replaceUmlauts( QString string )
+{
+  string = string.replace( Qt::Key_Adiaeresis, "Ae" );
+  string = string.replace( Qt::Key_Odiaeresis, "Oe" );
+  string = string.replace( Qt::Key_Udiaeresis, "Ue" );
+  string = string.replace( Qt::Key_Adiaeresis + 0x20, "ae" );
+  string = string.replace( Qt::Key_Odiaeresis + 0x20, "oe" );
+  string = string.replace( Qt::Key_Udiaeresis + 0x20, "ue" );
+  string = string.replace( 0xdf, "ss" );
+
+  // Check for other non ASCII characters and replace them by ?
+  for( int i=0; i < string.size(); i++ )
+    {
+      QChar qc = string[i];
+
+      if( qc.toLatin1() == 0 )
+        {
+          // Convert unknown ASCII character to ?
+          string[i] = QChar( '?' );
+        }
+    }
+
+  return string;
+}
+
+/**
+ * Called, to exchangeFrequency the frequencies active/standby on the KRT2 radio.
+ */
+void KRT2::exchangeFrequency()
+{
+  QByteArray msg;
+
+  msg.append( STX );
+  msg.append( EXCHANGE_FREQUENCIES );
+  send( msg );
 }
 
 /**
@@ -264,9 +282,6 @@ void KRT2::slotHandleRxData()
           return;
         }
 
-      qDebug() << "KRT2::handleRxData(): read " << read << " Bytes" << "First byte=" << buffer[0];;
-
-      buffer[read] = '\0';
       rxBuffer.append( buffer, read );
 
       QString msg = QString("0x%1").arg( rxBuffer.at(0), 2, 16, QChar('0') );
@@ -314,6 +329,7 @@ void KRT2::slotHandleRxData()
 
               case '\n':
         	// Alive from XCVario, can be ignored
+                rxBuffer.remove( 0 , 1 );
         	break;
 
               default:
@@ -332,8 +348,7 @@ void KRT2::slotHandleRxData()
  */
 bool KRT2::handleSTX()
 {
-  qDebug() << "KRT2::handleSTX():" << QString("0x%1").arg( rxBuffer[0], 2, 16, QChar( '0'))
-           << "BufferSize=" << rxBuffer.size();
+  qDebug() << "KRT2::handleSTX():" << rxBuffer.toHex();
 
   if( rxBuffer.size() < 2 )
     {

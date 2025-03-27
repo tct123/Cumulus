@@ -144,6 +144,7 @@ HEADERS = \
     isolist.h \
     KRT2.h \
     KRT2Constants.h \
+    KRT2Widget.h \
     layout.h \
     limitedlist.h \
     lineelement.h \
@@ -286,6 +287,7 @@ SOURCES = \
     isohypse.cpp \
     isolist.cpp \
     KRT2.cpp \
+    KRT2Widget.cpp \
     layout.cpp \
     lineelement.cpp \
     listviewfilter.cpp \

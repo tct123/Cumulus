@@ -123,6 +123,16 @@ public:
     return _globalMainWindow;
   };
 
+  /**
+   * Returns a pointer to the KRT2 class.
+   *
+   * \return A pointer to the krt2 driver instance.
+   */
+  static KRT2* krt2Driver()
+  {
+    return m_krt2;
+  };
+
   static void setRootWindow( bool value)
   {
     m_rootWindow = value;
@@ -572,7 +582,7 @@ private:
 #endif
 
   // KRT-2 interface objects
-  KRT2* m_krt2;
+  static KRT2* m_krt2;
   QString m_krt2Ip;
   QString m_krt2Port;
   bool m_krt2Active;
