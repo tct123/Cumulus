@@ -454,6 +454,14 @@ QString Airspace::getInfoString() const
           text += " " + name;
         }
 
+      if( getIcaoClass() <=6 )
+        {
+          QString tmp = QString( QObject::tr("AS-") );
+          tmp.append( QChar(getIcaoClass() + 0x41 ) );
+          tmp.append( ": " );
+          text.insert( 0, tmp );
+        }
+
       // Handle airspace frequency. Often it is already contained in the
       // airspace name.
       if( m_frequencyList.size() > 0 )
