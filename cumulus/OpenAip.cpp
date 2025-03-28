@@ -1243,7 +1243,7 @@ bool OpenAip::readAirspaces( QString fileName,
 
   qDebug() << "Airspace Doc is a Json Array of size:" << array.size();
 
-  // step over the json array to extract the airfield objects
+  // step over the json array to extract the airspcace objects
   for( int i=0; i < array.size(); i++ )
     {
       QJsonObject object = array[i].toObject();
@@ -1263,7 +1263,7 @@ bool OpenAip::readAirspaces( QString fileName,
       as.setName( name );
       bool ok = true;
 
-      // iterate over the airfield object list
+      // iterate over the airspace object list
       for( auto it = object.begin(), end=object.end(); it != end; ++it )
         {
           // qDebug() << "Key: " << it.key() << "Val: " << it.value();
