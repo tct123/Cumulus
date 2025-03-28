@@ -243,26 +243,33 @@ bool GpsCon::startGpsReceiving()
           msg = QString("%1 %2 %3").arg(MSG_OPEN).arg(gpsDevice).arg(QString::number(ioSpeed));
         }
 
-      qDebug() << msg;
-      writeClientMessage( 0, msg.toLatin1().data() );
-      readClientMessage( 0, msg );
+      qDebug() << "GpsCon::startGpsReceiving()?" << msg;
 
-      if (msg == MSG_NEG)
+      // Check, if devices are to start. It can be the case, that only WLAN 3 (KRT2)
+      // is activated. In this case it makes no sense to send empty data to the
+      // GPS receiver proceess.
+      if( msg.size() > 0 )
         {
-          emit deviceReport( tr("GPS device not reachable!"), 5000 );
-          return false;
-        }
-      else
-        {
-          qDebug() << "GPS client initialization succeeded";
-        }
+          writeClientMessage( 0, msg.toLatin1().data() );
+          readClientMessage( 0, msg );
 
-      // We switch on the data forwarding on the client side.
-      writeClientMessage(0, MSG_FGPS_ON );
-      readClientMessage(0, msg);
+          if (msg == MSG_NEG)
+            {
+              emit deviceReport( tr("GPS device not reachable!"), 5000 );
+              return false;
+            }
+          else
+            {
+              qDebug() << "GPS client initialization succeeded";
+            }
 
-      // remember last start time
-      lastQuery.start();
+          // We switch on the data forwarding on the client side.
+          writeClientMessage(0, MSG_FGPS_ON );
+          readClientMessage(0, msg);
+
+          // remember last start time
+          lastQuery.start();
+        }
 
       return true;
     }
