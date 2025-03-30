@@ -6,7 +6,7 @@
  **
  ************************************************************************
  **
- **   Copyright (c):  2018-2023 by Axel Pauli
+ **   Copyright (c):  2018-2025 by Axel Pauli
  **
  **   This file is distributed under the terms of the General Public
  **   License. See the file COPYING for more information.

@@ -77,7 +77,7 @@ void KRT2::slotConnect()
   if( m_socket->waitForConnected( 2000 ) == false )
     {
       // We wait 2s for the connection success
-      qCritical( ) << "KRT2Thread::connect(): connection error"
+      qCritical( ) << "KRT2::connect(): connection error"
                    << m_ip << ":" << m_port << m_socket->error()
                    << m_socket->errorString();
 

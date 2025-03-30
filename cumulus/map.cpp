@@ -8,7 +8,7 @@
  **
  **   Copyright (c):  1999, 2000 by Heiner Lamprecht, Florian Ehinger
  **                   2008 by Josua Dietze
- **                   2008-2023 by Axel Pauli
+ **                   2008-2025 by Axel Pauli
  **
  **   This file is distributed under the terms of the General Public
  **   License. See the file COPYING for more information.
@@ -161,7 +161,7 @@ void Map::p_displayAirspaceInfo( const QPoint& current )
   int itemcount=0;
 
   QString text;
-
+  QList<Airspace *> asList;
   bool show = false;
 
   text += "<html><table border=2 bordercolor=\"black\" cellpadding=\"2\"><tr><th align=center>" +
@@ -205,6 +205,7 @@ void Map::p_displayAirspaceInfo( const QPoint& current )
             }
 
           show = true;
+          asList.append( pSpace );
         }
     }
 
@@ -224,7 +225,7 @@ void Map::p_displayAirspaceInfo( const QPoint& current )
   text.replace( QRegExp("AS-E low "), "AS-El " );
   text.replace( QRegExp("AS-E high "), "AS-Eh " );
 
-  box = new AirspaceInfo( this, text );
+  box = new AirspaceInfo( this, text, asList );
   box->show();
 }
 
