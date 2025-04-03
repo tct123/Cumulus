@@ -43,7 +43,6 @@ KRT2::KRT2( QObject *parent, QString ip, QString port ) :
 KRT2::~KRT2()
 {
   qDebug() << "~KRT2() is called.";
-  close();
 }
 
 /**
