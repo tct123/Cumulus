@@ -20,13 +20,9 @@
 #include <QtCore>
 #include <QTcpSocket>
 
-class KRT2Thread;
-
 class KRT2 : public QObject
 {
   Q_OBJECT
-
-  KRT2() = delete;
 
  private:
 
