@@ -21,6 +21,7 @@
 #include "generalconfig.h"
 #include "KRT2Constants.h"
 #include "KRT2.h"
+#include "MainWindow.h"
 
 /**
  * KRT2 device class.
@@ -38,6 +39,9 @@ KRT2::KRT2( QObject *parent, QString ip, QString port ) :
 {
   setObjectName( "KRT2" );
   slotConnect();
+  connect( this, SIGNAL( forwardDeviceError( const QString&, const bool ) ),
+           MainWindow::mainWindow(), SLOT( slotNotification( const QString&, const bool ) ) );
+
 }
 
 KRT2::~KRT2()
@@ -82,14 +86,14 @@ void KRT2::slotConnect()
 
       forwardDeviceError( QObject::tr("Cannot open device") + " " +
                           m_ip + ":" + m_port + ", " +
-                          m_socket->errorString() );
+                          m_socket->errorString(), false );
       m_socket->close();
       delete m_socket;
       m_socket = nullptr;
       m_connected = false;
 
-      // Start retry timer for connection retry after 5s.
-      QTimer::singleShot( 5000, this, SLOT(slotConnect()));
+      // Start retry timer for connection retry after 10s.
+      QTimer::singleShot( 10000, this, SLOT(slotConnect()));
       return;
     }
 
