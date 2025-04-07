@@ -19,7 +19,7 @@
   </tr>
   </table>
 
-	<h4 align="center">Einstellungen - GPS</h4>
+	<h3 align="center">Einstellungen - GPS</h3>
 
 	<p>W&auml;hlen Sie hier die Ger&auml;teschnittstelle aus, &uuml;ber die
 	   Cumulus die GPS Daten austauschen und verarbeiten soll. Unter Android
@@ -46,7 +46,7 @@
 	und Hindernisinformationen.
 	</p>
 
-	<h5>GPS Quelle</h5>
+	<h4>GPS Quelle</h4>
 
 	Mit der Auswahlbox <i>GPS Quelle</i> wird bestimmt, von welchem System die
 	Standard GPS NMEA Datens&auml;tze verarbeitet werden sollen. Die folgende
@@ -71,13 +71,15 @@
   <p>
   </p>
   
-  <h5>GPS Ger&auml;t</h5>
+  <h4>GPS Ger&auml;t</h4>
 
     In der Combobox k&ouml;nnen Sie die Ger&auml;teschnittstelle
     ausw&auml;hlen, &uuml;ber die die Verbindung zum GPS Empf&auml;nger
     hergestellt werden soll. Wenn sie hier WiFi ausw&auml;hlen, werden ihnen
-    drei zus&auml;tzliche Zeilen eingeblendet, über die man bis zu drei WiFi Kan&auml;le
-    definieren kann. Unter Android sind diese drei Zeilen immer sichtbar. Daf&uuml;r
+    drei zus&auml;tzliche Zeilen weiter unten eingeblendet, über die man bis zu
+    drei WiFi Verbindungen definieren kann.
+    <br><br>
+    Unter Android sind diese drei Zeilen immer sichtbar. Daf&uuml;r
     existiert die GPS Ger&auml;te Auswahlbox nicht.
     <p>
   </p>
@@ -152,32 +154,45 @@
     </tr>
 
     <tr>
-      <th>WiFi 1<br>WiFi 2<br>WiFi KRT2</th>
+      <th>WiFi</th>
       <td>
         F&uuml;r eine Wifi Verbindung zu einem externen Ger&auml;t. Es
-        k&ouml;nnen bis zu drei Kanäle benutzt werden. Pro Kanal sind
-        die IP Adresse und der Port anzugeben. Die Kopplung mit dem externen
-        Ger&auml;t muss zuvor über das Betriebssystem erfolgen. Hier&uuml;ber
-        kann auch ein <i>XCVario</i> folgenderma&szlig;en angebunden werden:
-        <p>
-        WiFi-1 IP:Port 192.168.4.1:8880 (XCVario Daten)
-        <p>
-        WiFi-2 IP:Port 192.168.4.1:8881 (Flarm Daten von XCVario S1)
-        <p>
-        WiFi-KRT2 IP:Port 192.168.4.1:8882 (KRT2 Funkger&auml;te Daten von XCVario S2)
-        <p>
-        Die Aktivierung der definierten Schnittstelle erfolgt über die Checkbox
-        auf der linken Seite. Ist diese gecheckt, wird versucht eine TCP Verbindung
-        dahin aufzubauen. Voraussetzung ist aber, dass man sich mit dem WiFi
-        Server zuvor verbunden hat.
-        <p>
-        F&uuml;r weitere Informationen zur XCVario Anbindung siehe auch ins
-        <a href="https://xcvario.com/home/german-handbook">XCVario Handbuch</a>.
+        k&ouml;nnen bis zu drei Verbindungen definiert werden. Pro Verbingung
+        sind die IP Adresse und der Port anzugeben. Die WiFi Kopplung mit dem externen
+        Ger&auml;t muss zuvor über das Betriebssystem erfolgen. Die Aktivierung
+        der definierten Schnittstelle erfolgt über die Checkbox auf der linken
+        Seite. Ist diese gecheckt, wird versucht eine TCP Verbindung dahin
+        aufzubauen. 
         <p>
         Unter Android aktiviert man die ausgewählten WiFi Kan&auml;le &uuml;ber
         das Men&uuml;:
         <br><br>
         Einstellungen->Hardware->GPS->GPS ein->WiFi GPS
+        <br><br>
+        Nachfolgend wird eine Kopplung mit einem XCVario beschrieben.
+        F&uuml;r weitere Informationen zur XCVario Anbindung siehe auch ins
+        <a href="https://xcvario.com/home/german-handbook">XCVario Handbuch</a>.
+      </td>
+    </tr>
+    
+    <tr>
+      <th>WiFi 1 XCVario</th>
+      <td>
+        IP:Port 192.168.4.1:8880 (XCVario Datenkanal)      
+      </td>
+    </tr>
+      
+    <tr>
+      <th>WiFi 2 XCVario</th>
+      <td>
+        IP:Port 192.168.4.1:8881 (Flarm Daten von XCVario S1) 
+      </td>
+    </tr>
+      
+    <tr>
+      <th>WiFi KRT2 XCVario</th>
+      <td>
+        IP:Port 192.168.4.1:8882 (KRT2 Funkger&auml;te Daten von XCVario S2)
       </td>
     </tr>
 
@@ -199,7 +214,7 @@
 		W&uuml;nschen ab. Das kann eventuell bei USB Ger&auml;ten erfoderlich sein.
 	</p>
 
-	<h5>H&ouml;henreferenz</h5>
+	<h4>H&ouml;henreferenz</h4>
 
 	Die Standardeinstellung ist GPS. Die meisten GPS Ger&auml;te liefern
 	die H&ouml;he auf den Meeresspiegel bezogen, als sogenanntes MSL (mean
@@ -291,7 +306,7 @@
     </tr>
 	</table>
 
-	<h5>Speichere NMEA Daten</h5>
+	<h4>Speichere NMEA Daten</h4>
 
 	Wenn die Option
 	<i>Speichere NMEA Daten</i> aktiviert ist, wird der empfangene NMEA
@@ -303,7 +318,7 @@
 	Wir empfehlen, diese Option nur zu Analysezwecken zu benutzen, da sie
 	auch die Leistungsf&auml;higkeit des Prozessors einschr&auml;nken kann.
   
-	<h5>Verarbeitete GPS Datens&auml;tze</h5>
+	<h4>Verarbeitete GPS Datens&auml;tze</h4>
 
 	Cumulus verarbeitet die folgenden NMEA und propriet&auml;ren
 	Datens&auml;tze:
