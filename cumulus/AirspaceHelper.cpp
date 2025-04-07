@@ -276,6 +276,7 @@ bool AirspaceHelper::createCompiledFile( QString& fileName,
       ShortSave( out, as->getName() );
       out.writeRawData( country, 2 );
       out << quint8( as->getIcaoClass() );
+      out << quint8( as->getOpenAipType() );
 
       // The frequency list is saved.
       Frequency::saveFrequencies( out, as->getFrequencyList() );
@@ -385,6 +386,7 @@ bool AirspaceHelper::readCompiledFile( QString &path, QList<Airspace*>& list )
       quint8 activity;
       bool byNotam;
       quint8 type;
+      quint8 openAipType;
       quint8 lowerType;
       float lower;
       quint8 upperType;
@@ -396,6 +398,7 @@ bool AirspaceHelper::readCompiledFile( QString &path, QList<Airspace*>& list )
       ShortLoad( in, name );
       in.readRawData( country, 2 );
       in >> icaoClass;
+      in >> openAipType;
 
       // The frequency list is loaded.
       Frequency::loadFrequencies( in, fqList );
@@ -411,6 +414,7 @@ bool AirspaceHelper::readCompiledFile( QString &path, QList<Airspace*>& list )
 
       Airspace *a = new Airspace( name,
                                   (BaseMapElement::objectType) type,
+                                  openAipType,
                                   pa,
                                   upper, (BaseMapElement::elevationType) upperType,
                                   lower, (BaseMapElement::elevationType) lowerType,
