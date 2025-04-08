@@ -15,9 +15,9 @@
  **
 ***********************************************************************/
 
-#include <cstdint>
-
 #pragma once
+
+#include <cstdint>
 
   static constexpr uint8_t STX{0x02}; //!< Command start character.
   static constexpr uint8_t ACK{0x06}; //!< Command acknowledged character.

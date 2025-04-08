@@ -14,7 +14,6 @@
  **   (at your option) any later version.
  **
  ***********************************************************************/
-#include <cmath>
 
 #include <QtCore>
 
@@ -102,6 +101,17 @@ void KRT2::slotConnect()
   data.append( "!krt2" );
   send( data );
   qDebug() << "KRT2::slotConnect(): sending !krt2";
+  // QTimer::singleShot( 2000, this, SLOT(slotConRequest()));
+}
+
+
+void KRT2::slotConRequest()
+{
+  qDebug() << "KRT2::slotConRequest(): sending S ping";
+  QByteArray data;
+  data.append( "S" );
+  send( data );
+  QTimer::singleShot( 8000, this, SLOT(slotConRequest()));
 }
 
 /**
@@ -293,7 +303,7 @@ void KRT2::slotHandleRxData()
               case 0x01:
                 {
                   // Response from KRT2 to 'S' ping.
-                  qDebug() << "Received 0x01 from KRT2 to my ping";
+                  qDebug() << "Received 0x01 from KRT2 to my S ping";
                   m_sychronized = true;
                   rxBuffer.remove( 0 , 1 );
                   break;

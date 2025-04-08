@@ -93,12 +93,19 @@ class KRT2 : public QObject
    */
   void close();
 
+  struct krt2Data {
+
+
+  };
+
  public slots:
 
    /**
     * Try to establish the connection to the KRT2 device.
     */
    void slotConnect();
+
+   void slotConRequest();
 
  private slots:
 
