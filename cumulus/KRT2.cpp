@@ -270,7 +270,7 @@ void KRT2::exchangeFrequency()
  */
 void KRT2::slotHandleRxData()
 {
-  qDebug() << "KRT2::handleRxData() is called: " << QThread::currentThreadId();
+  // qDebug() << "KRT2::handleRxData() is called: " << QThread::currentThreadId();
 
   char buffer[128];
 
@@ -292,8 +292,8 @@ void KRT2::slotHandleRxData()
 
       rxBuffer.append( buffer, read );
 
-      QString msg = QString("0x%1").arg( rxBuffer.at(0), 2, 16, QChar('0') );
-      qDebug() << "KRT2::handleRxData():" << msg << " : " << rxBuffer.toHex();
+      //QString msg = QString("0x%1").arg( rxBuffer.at(0), 2, 16, QChar('0') );
+      //qDebug() << "KRT2::handleRxData():" << msg << " : " << rxBuffer.toHex();
 
       // Handle commands
       while( rxBuffer.size() > 0 )
