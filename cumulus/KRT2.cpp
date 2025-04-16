@@ -131,7 +131,7 @@ void KRT2::slotDisconnected()
  */
 bool KRT2::send( QByteArray& data )
 {
-  qDebug() << "KRT2::send() is called, m_connected=" << m_connected << data.toHex();
+  // qDebug() << "KRT2::send() is called, m_connected=" << m_connected << data.toHex();
 
   QMutexLocker locker( &mutex );
 
