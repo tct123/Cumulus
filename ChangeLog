@@ -18,6 +18,9 @@ Cumulus changelog
 #                                                                               #
 # Thank you Axel ;-))                                                           #
 #===============================================================================#
+[-] 2025-05-04 AP: Issue #155 fixed. Allow users to transfer frequency and name
+                   of selected airports to radio.
+
 [-] 2025-03-10 AP: Issue #170 fixed. vector.cpp setspeed() should set dirtyXY
 
 [*] 2024-08-07 AP: Cumulus 5.42.5 released for Ubuntu and Android.
