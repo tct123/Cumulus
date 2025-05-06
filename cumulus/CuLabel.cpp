@@ -6,18 +6,14 @@
 **
 ************************************************************************
 **
-**   Copyright (c): 2012-2021 Axel Pauli
+**   Copyright (c): 2012-2025 Axel Pauli
 **
 **   This file is distributed under the terms of the General Public
 **   License. See the file COPYING for more information.
 **
 ***********************************************************************/
 
-#ifndef QT_5
-#include <QtGui>
-#else
 #include <QtWidgets>
-#endif
 
 #include "CuLabel.h"
 

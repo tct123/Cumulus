@@ -6,15 +6,14 @@
 **
 ************************************************************************
 **
-**   Copyright (c): 2012-2021 Axel Pauli
+**   Copyright (c): 2012-2025 Axel Pauli
 **
 **   This file is distributed under the terms of the General Public
 **   License. See the file COPYING for more information.
 **
 ***********************************************************************/
 
-#ifndef CuLabel_h
-#define CuLabel_h
+#pragma once
 
 #include <QEvent>
 #include <QLabel>
@@ -28,7 +27,7 @@
  *
  * This is a slight modification of a QLabel. It adds a mousePress event.
  *
- * \date 2002-2021
+ * \date 2002-2025
  *
  */
 class CuLabel : public QLabel
@@ -57,4 +56,4 @@ protected:
   void mousePressEvent( QMouseEvent *event );
 };
 
-#endif
+
