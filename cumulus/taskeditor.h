@@ -188,7 +188,7 @@ signals:
   /** name of current task */
   QLineEdit* taskName;
 
-  /** name of current task */
+  /** current task type */
   QLabel* taskType;
 
   /** name of current edited task */
@@ -232,4 +232,3 @@ signals:
   /** The list index of the last edited taskpoint. */
   int m_lastEditedTP;
 };
-
