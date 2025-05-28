@@ -7,7 +7,7 @@
 ************************************************************************
 **
 **   Copyright (c):  2002      by Heiner Lamprecht
-**                   2008-2022 by Axel Pauli
+**                   2008-2025 by Axel Pauli
 **
 **   This file is distributed under the terms of the General Public
 **   License. See the file COPYING for more information.
@@ -173,6 +173,9 @@ TaskEditor::TaskEditor( QWidget* parent,
   headlineLayout->addWidget( taskName, 5 );
   headlineLayout->addSpacing(10 * Scaling);
 
+  taskType = new QLabel( tr("Type:") );
+  totalLayout->addWidget( taskType, 1, 0, 1, 2 );
+
   defaultButton = new QPushButton;
   // defaultButton->setIcon(style->standardIcon(QStyle::SP_DialogResetButton));
   defaultButton->setIcon( QIcon(GeneralConfig::instance()->loadPixmap("clear-32.png")) );
@@ -186,7 +189,7 @@ TaskEditor::TaskEditor( QWidget* parent,
   editButton->setIconSize(QSize(Layout::getButtonSize(12), Layout::getButtonSize(12)));
   editButton->setToolTip(tr("Edit selected waypoint"));
   headlineLayout->addWidget(editButton);
-  totalLayout->addWidget( taskList, 1, 0 );
+  totalLayout->addWidget( taskList, 2, 0 );
 
   // contains the task editor buttons
   QVBoxLayout* buttonLayout = new QVBoxLayout;
@@ -202,7 +205,7 @@ TaskEditor::TaskEditor( QWidget* parent,
   buttonLayout->addSpacing(10 * Scaling);
   buttonLayout->addWidget( delButton );
   buttonLayout->addStretch( 10 );
-  totalLayout->addLayout( buttonLayout, 1, 1 );
+  totalLayout->addLayout( buttonLayout, 2, 1 );
 
   // The access buttons to the lists are only shown, if the lists are not empty.
   if( _globalMapContents->getAirfieldList().size() > 0 ||
@@ -265,12 +268,12 @@ TaskEditor::TaskEditor( QWidget* parent,
            }
         }
 
-      totalLayout->addLayout( buttonLayout, 1, 2 );
+      totalLayout->addLayout( buttonLayout, 2, 2 );
     }
   else
     {
       QLabel* label = new QLabel( tr("No data\navailable") );
-      totalLayout->addWidget( label, 1, 2 );
+      totalLayout->addWidget( label, 2, 2 );
     }
 
   QLabel *titlePix = new QLabel(this);
@@ -287,7 +290,7 @@ TaskEditor::TaskEditor( QWidget* parent,
   buttonBox->addWidget(okButton, 1);
   buttonBox->addStretch(2);
   buttonBox->addWidget(titlePix);
-  totalLayout->addLayout(buttonBox, 0, 3, 2, 1);
+  totalLayout->addLayout(buttonBox, 0, 3, 3, 3 );
 
   if( editState == TaskEditor::edit )
     {
@@ -426,6 +429,9 @@ void TaskEditor::showTask()
                 " / " + task2Edit->getTaskDistanceString();
 
   setWindowTitle(txt);
+
+  // Show recognized task type
+  taskType->setText( tr("Type: ") + task2Edit->getTaskTypeString() );
 
   QList<TaskPoint> tmpList = task2Edit->getTpList();
 

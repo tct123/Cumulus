@@ -57,7 +57,7 @@ double MapCalc::distP(double lat1, double lon1, double lat2, double lon2)
 /**
  *  Distance calculation according to great circle. Unfit for very short
  *  distances due to rounding errors but required for longer distances according
- *  to FAI Code Sportif, Annex C. It is used as default in Cumulus.
+ *  to FAI Code Sportif, Annex C.
  *  http://sis-at.streckenflug.at/2009/pdf/cs_annex_c.pdf
  */
 double MapCalc::dist(double lat1, double lon1, double lat2, double lon2)
