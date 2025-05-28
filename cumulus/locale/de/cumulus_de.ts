@@ -1231,13 +1231,13 @@
         <translation>Zeige KRT2 Verbindungsstatus</translation>
     </message>
     <message>
-        <location filename="../../KRT2Widget.cpp" line="356"/>
+        <location filename="../../KRT2Widget.cpp" line="358"/>
         <source>Radio call sign</source>
         <translation>Rufzeichen</translation>
     </message>
     <message>
-        <location filename="../../KRT2Widget.cpp" line="364"/>
-        <location filename="../../KRT2Widget.cpp" line="386"/>
+        <location filename="../../KRT2Widget.cpp" line="368"/>
+        <location filename="../../KRT2Widget.cpp" line="390"/>
         <source>KRT2 device not connected</source>
         <translation>KRT2 Gerät nicht verbunden</translation>
     </message>
@@ -3640,7 +3640,7 @@ USB Stick eingeschoben?</translation>
         <location filename="../../flarmbase.cpp" line="163"/>
         <location filename="../../flighttask.cpp" line="47"/>
         <location filename="../../flighttask.cpp" line="71"/>
-        <location filename="../../flighttask.h" line="87"/>
+        <location filename="../../flighttask.h" line="86"/>
         <location filename="../../runway.cpp" line="67"/>
         <location filename="../../taskpoint.cpp" line="562"/>
         <source>unknown</source>
@@ -3962,54 +3962,54 @@ USB Stick eingeschoben?</translation>
         <translation>Leerpunkt</translation>
     </message>
     <message>
-        <location filename="../../flighttask.cpp" line="494"/>
+        <location filename="../../flighttask.cpp" line="505"/>
         <source>not set</source>
         <translation>nicht gesetzt</translation>
     </message>
     <message>
-        <location filename="../../flighttask.cpp" line="496"/>
+        <location filename="../../flighttask.cpp" line="507"/>
         <source>Free Distance</source>
         <translation>Freie Strecke</translation>
     </message>
     <message>
-        <location filename="../../flighttask.cpp" line="498"/>
+        <location filename="../../flighttask.cpp" line="509"/>
         <source>Free Out and Return</source>
         <translation>ZR-Strecke</translation>
     </message>
     <message>
-        <location filename="../../flighttask.cpp" line="500"/>
+        <location filename="../../flighttask.cpp" line="511"/>
         <source>FAI Triangle</source>
         <translation>FAI Dreieck</translation>
     </message>
     <message>
-        <location filename="../../flighttask.cpp" line="502"/>
+        <location filename="../../flighttask.cpp" line="513"/>
         <source>Triangle</source>
         <translation>Dreieck</translation>
     </message>
     <message>
-        <location filename="../../flighttask.cpp" line="504"/>
+        <location filename="../../flighttask.cpp" line="515"/>
         <source>DMSt 4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../flighttask.cpp" line="506"/>
+        <location filename="../../flighttask.cpp" line="517"/>
         <source>Polygon</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../Frequency.cpp" line="150"/>
-        <location filename="../../flighttask.cpp" line="509"/>
+        <location filename="../../flighttask.cpp" line="520"/>
         <location filename="../../taskpoint.cpp" line="545"/>
         <source>Unknown</source>
         <translation>Unbekannt</translation>
     </message>
     <message>
-        <location filename="../../flighttask.cpp" line="1306"/>
+        <location filename="../../flighttask.cpp" line="1317"/>
         <source>none</source>
         <translation>keine</translation>
     </message>
     <message>
-        <location filename="../../flighttask.cpp" line="1326"/>
+        <location filename="../../flighttask.cpp" line="1337"/>
         <source>too strong!</source>
         <translation>zu stark!</translation>
     </message>
@@ -6526,36 +6526,36 @@ USB Stick eingeschoben?</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="180"/>
+        <location filename="../../taskeditor.cpp" line="183"/>
         <source>Set task figure default schemas</source>
         <translation>Task Figuren auf Standard Schemas rücksetzen</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="187"/>
+        <location filename="../../taskeditor.cpp" line="190"/>
         <source>Edit selected waypoint</source>
         <translation>Editiere markierten Wegpunkt</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="243"/>
-        <location filename="../../taskeditor.cpp" line="404"/>
+        <location filename="../../taskeditor.cpp" line="246"/>
+        <location filename="../../taskeditor.cpp" line="407"/>
         <source>Waypoints</source>
         <translation>Wegpunkte</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="211"/>
-        <location filename="../../taskeditor.cpp" line="348"/>
+        <location filename="../../taskeditor.cpp" line="214"/>
+        <location filename="../../taskeditor.cpp" line="351"/>
         <source>Airfields</source>
         <translation>Flugplätze</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="227"/>
-        <location filename="../../taskeditor.cpp" line="376"/>
+        <location filename="../../taskeditor.cpp" line="230"/>
+        <location filename="../../taskeditor.cpp" line="379"/>
         <source>Navaids</source>
         <translation>Nav Hilfen</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="219"/>
-        <location filename="../../taskeditor.cpp" line="362"/>
+        <location filename="../../taskeditor.cpp" line="222"/>
+        <location filename="../../taskeditor.cpp" line="365"/>
         <source>Hotspots</source>
         <translation>T-Punkte</translation>
     </message>
@@ -6565,76 +6565,86 @@ USB Stick eingeschoben?</translation>
         <translation>Klone Wegpunkt</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="272"/>
+        <location filename="../../taskeditor.cpp" line="275"/>
         <source>No data
 available</source>
         <translation>keine Daten\nverfügbar</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="235"/>
-        <location filename="../../taskeditor.cpp" line="390"/>
+        <location filename="../../taskeditor.cpp" line="238"/>
+        <location filename="../../taskeditor.cpp" line="393"/>
         <source>Outlandings</source>
         <translation>Landefelder</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="488"/>
+        <location filename="../../taskeditor.cpp" line="176"/>
+        <source>Type:</source>
+        <translation>Typ:</translation>
+    </message>
+    <message>
+        <location filename="../../taskeditor.cpp" line="434"/>
+        <source>Type: </source>
+        <translation>Typ:</translation>
+    </message>
+    <message>
+        <location filename="../../taskeditor.cpp" line="494"/>
         <source>Total</source>
         <translation>Summe</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="692"/>
+        <location filename="../../taskeditor.cpp" line="698"/>
         <source>Task Incomplete</source>
         <translation>Aufgabe unvollständig</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="693"/>
+        <location filename="../../taskeditor.cpp" line="699"/>
         <source>Task needs at least a start and a finish point!</source>
         <translation>Eine Aufgabe benötigt einen Start und einen Ziel Punkt!</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="707"/>
+        <location filename="../../taskeditor.cpp" line="713"/>
         <source>Double points in order</source>
         <translation>Doppelte Punkte in Folge</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="708"/>
+        <location filename="../../taskeditor.cpp" line="714"/>
         <source>Points %1 and %2 have the same coordinates.
 Please remove one of them!</source>
         <translation>Punkte %1 und %2 haben die selben Koordinaten.
 Bitte einen Punkt löschen!</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="722"/>
+        <location filename="../../taskeditor.cpp" line="728"/>
         <source>Name Missing</source>
         <translation>Vermisse Name</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="723"/>
+        <location filename="../../taskeditor.cpp" line="729"/>
         <source>Enter a name for the task to save it</source>
         <translation>Bitte Tasknamen eingeben</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="737"/>
+        <location filename="../../taskeditor.cpp" line="743"/>
         <source>Task name in use</source>
         <translation>Aufgabenname vergeben</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="738"/>
+        <location filename="../../taskeditor.cpp" line="744"/>
         <source>Task name in use.</source>
         <translation>Aufgabenname vergeben.</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="738"/>
+        <location filename="../../taskeditor.cpp" line="744"/>
         <source>Overwrite existing task?</source>
         <translation>Existierende Aufgabe überschreiben?</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="985"/>
+        <location filename="../../taskeditor.cpp" line="991"/>
         <source>Defaults?</source>
         <translation>Standards?</translation>
     </message>
     <message>
-        <location filename="../../taskeditor.cpp" line="986"/>
+        <location filename="../../taskeditor.cpp" line="992"/>
         <source>Reset all TP schemas to default configuration values?</source>
         <translation>Alle TP Schemas auf Konfigurationsstandard rücksetzen?</translation>
     </message>
