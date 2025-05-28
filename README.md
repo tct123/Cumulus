@@ -17,7 +17,7 @@ Cumulus packages for *Android* and *Ubuntu* 64bit can be downloaded from [here](
 
 <b>Note! Current Android packages are Qt4 based and are only available til release level 6. They are only provided here and not more in GooglePlay due to Google restrictions.</b>
 
-Ubuntu/Debian packagees are Qt5 based and they are further developed in the future for the Linux desktop. Other target hardware may be taken into account in the future.
+Ubuntu/Debian packages are Qt5 based and they are further developed in the future for the Linux desktop. Other target hardware may be taken into account in the future. Qt4 is not more supported by Linux.
 
 Last available Cumulus packages: Release 5.43.0, published at 2025-05-04. Press the link below and then the download button.
 - Ubuntu 24.04, 64bit, binary package, [cumulus_5.43.0_amd64.deb](https://github.com/kflog-project/Cumulus/tree/master/Releases/Ubuntu/binary-packages/cumulus_5.43.0_amd64.deb)
