@@ -15,7 +15,7 @@ If your used Android device has built-in a barometric sensor, you can activate i
 
 Cumulus packages for *Android* and *Ubuntu* 64bit can be downloaded from [here](https://github.com/kflog-project/Cumulus/tree/master/Releases/). For Ubuntu are [binary](https://github.com/kflog-project/Cumulus/tree/master/Releases/Ubuntu/binary-packages) and [source](https://github.com/kflog-project/Cumulus/tree/master/Releases/Ubuntu/source-packages) packages available.
 
-<b>Note! Current Android packages are Qt4 based and are only available til release level 6. They are only provided here and not more in GooglePlay due to Google restrictions.</b>
+<b>Note! Current Android packages are Qt4 based and are only available til Android release level 6. They are only provided here and not more in GooglePlay due to Google restrictions.</b>
 
 Ubuntu/Debian packages are Qt5 based and they are further developed in the future for the Linux desktop. Other target hardware may be taken into account in the future. Qt4 is not more supported by Linux.
 
