@@ -1377,6 +1377,7 @@ void MainWindow::createActions()
             this, SLOT( slotSwitchToInfoView() ) );
 
   actionToggleStatusbar = new QAction( tr( "Statusbar"), this );
+  actionToggleStatusbar->setShortcut(Qt::Key_S + Qt::SHIFT);
   actionToggleStatusbar->setCheckable(true);
   actionToggleStatusbar->setChecked(true);
   addAction( actionToggleStatusbar );
@@ -1488,6 +1489,7 @@ void MainWindow::createActions()
              m_logger, SLOT( slotToggleLogging() ) );
 
   actionToggleTrailDrawing = new QAction( tr( "Flight trail" ), this );
+  actionToggleTrailDrawing->setShortcut(Qt::Key_F + Qt::SHIFT);
   actionToggleTrailDrawing->setCheckable(true);
   actionToggleTrailDrawing->setChecked( GeneralConfig::instance()->getMapDrawTrail() );
   addAction( actionToggleTrailDrawing );
@@ -1513,7 +1515,7 @@ void MainWindow::createActions()
 
   actionSelectTask = new QAction( tr( "Select task" ), this );
 #ifndef ANDROID
-  actionSelectTask->setShortcut(Qt::Key_T + Qt::SHIFT);
+  actionSelectTask->setShortcut(Qt::Key_T);
 #endif
   addAction( actionSelectTask );
   connect ( actionSelectTask, SIGNAL( triggered() ),
@@ -1586,7 +1588,7 @@ void MainWindow::createActions()
 
   // Toggle the maps sidebar (info boxes)
   actionToggleMapSidebar = new QAction( tr( "Info Boxes"), this );
-  actionToggleMapSidebar->setShortcut(Qt::Key_I);
+  actionToggleMapSidebar->setShortcut(Qt::Key_I  + Qt::SHIFT);
   actionToggleMapSidebar->setCheckable(true);
   actionToggleMapSidebar->setChecked(true);
   addAction( actionToggleMapSidebar );
