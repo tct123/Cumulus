@@ -182,7 +182,6 @@ MainWindow::MainWindow( Qt::WindowFlags flags ) :
   actionHelpAboutApp(0),
   actionHelpAboutQt(0),
   actionStartFlightTask(0),
-  scToggleMapSidebar(0),
   scExit(0),
   contextMenu(0),
   fileMenu(0),
@@ -1580,26 +1579,19 @@ void MainWindow::createActions()
   connect( actionHelpAboutApp, SIGNAL( triggered() ),
             this, SLOT( slotVersion() ) );
 
-#if ! defined ANDROID
-  // The Qt about is too big for small screens. Therefore it is undefined for
-  // Android
   actionHelpAboutQt = new QAction( tr( "About Qt" ), this );
   actionHelpAboutQt->setShortcut(Qt::Key_Q);
   addAction( actionHelpAboutQt );
   connect( actionHelpAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()) );
-#endif
 
-  actionToggleMapSidebar = new QAction( tr( "Map Info Boxes"), this );
+  // Toggle the maps sidebar (info boxes)
+  actionToggleMapSidebar = new QAction( tr( "Info Boxes"), this );
+  actionToggleMapSidebar->setShortcut(Qt::Key_I);
   actionToggleMapSidebar->setCheckable(true);
   actionToggleMapSidebar->setChecked(true);
   addAction( actionToggleMapSidebar );
   connect( actionToggleMapSidebar, SIGNAL( toggled( bool ) ),
            viewMap, SLOT( slot_showInfoBoxes(bool) ) );
-
-  scToggleMapSidebar = new QShortcut( this );
-  scToggleMapSidebar->setKey(Qt::Key_D);
-  connect( scToggleMapSidebar, SIGNAL( activated() ),
-           actionToggleMapSidebar, SLOT( toggle() ) );
 
   // Cumulus can be closed by using Escape key. This key is also as
   // hardware key available under Maemo.
@@ -1678,7 +1670,6 @@ void  MainWindow::toggleActions( const bool toggle )
 
   actionToggleLogging->setEnabled( toggle );
   actionNav2Home->setEnabled( toggle );
-  scToggleMapSidebar->setEnabled( toggle );
   scExit->setEnabled( toggle );
 
   if( toggle )

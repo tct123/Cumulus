@@ -27,7 +27,7 @@
  *
  * \date 2002-2025
  *
- * \version 1.4
+ * \version 1.5
  */
 
 #pragma once
@@ -527,9 +527,6 @@ private:
   QAction* actionHelpAboutApp;
   QAction* actionHelpAboutQt;
   QAction* actionStartFlightTask;
-
-  /* shortcut to toggle the left map sidebar. */
-  QShortcut* scToggleMapSidebar;
 
   /* shortcut for exit application */
   QShortcut* scExit;
