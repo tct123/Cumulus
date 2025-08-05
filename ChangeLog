@@ -18,10 +18,13 @@ Cumulus changelog
 #                                                                               #
 # Thank you Axel ;-))                                                           #
 #===============================================================================#
+
+[o] 2025-08-05 AP: Shortkey I set for toggling map sidebar. Shortkey D removed.
+
 [*] 2025-06-05 AP: Cumulus 5.43.1 released for Debian, Ubuntu and Android.
 
 [-] 2025-05-28 AP: Issue #173 fixed. Task type was always wrong shown.
-                   Task editor shows now recognised taype during editor session.
+                   Task editor shows now recognised type during editor session.
 
 [*] 2025-05-04 AP: Cumulus 5.43.0 released for Debian, Ubuntu and Android.
 
