@@ -169,7 +169,8 @@ MainWindow::MainWindow( Qt::WindowFlags flags ) :
   actionToggleNaLabels(0),
   actionToggleTpLabels(0),
   actionToggleWpLabels(0),
-  actionToggleLabelsInfo(0),
+  actionToggleHsLabels(0),
+  actionToggleLabelsElevation(0),
   actionToggleLogging(0),
   actionToggleTrailDrawing(0),
   actionEnsureVisible(0),
@@ -1077,7 +1078,8 @@ void MainWindow::createContextMenu()
   labelSubMenu->addAction( actionToggleNaLabels );
   labelSubMenu->addAction( actionToggleTpLabels );
   labelSubMenu->addAction( actionToggleWpLabels );
-  labelSubMenu->addAction( actionToggleLabelsInfo );
+  labelSubMenu->addAction( actionToggleHsLabels );
+  labelSubMenu->addAction( actionToggleLabelsElevation );
   labelMenu->addSeparator();
 
 #ifndef ANDROID
@@ -1418,7 +1420,7 @@ void MainWindow::createActions()
   connect ( actionZoomOutZ, SIGNAL( triggered() ),
              Map::instance , SLOT( slotZoomOut() ) );
 
-  actionToggleAfLabels = new QAction ( tr( "Airfield" ), this);
+  actionToggleAfLabels = new QAction ( tr( "Airfields" ), this);
 #ifndef ANDROID
   actionToggleAfLabels->setShortcut(Qt::Key_A);
 #endif
@@ -1438,7 +1440,7 @@ void MainWindow::createActions()
   connect( actionToggleNaLabels, SIGNAL( toggled( bool ) ),
             this, SLOT( slotToggleNaLabels( bool ) ) );
 
-  actionToggleOlLabels = new QAction ( tr( "Outlanding" ), this);
+  actionToggleOlLabels = new QAction ( tr( "Outlandings" ), this);
 #ifndef ANDROID
   actionToggleOlLabels->setShortcut(Qt::Key_O);
 #endif
@@ -1449,7 +1451,7 @@ void MainWindow::createActions()
             this, SLOT( slotToggleOlLabels( bool ) ) );
 
 
-  actionToggleTpLabels = new QAction ( tr( "Taskpoint" ), this);
+  actionToggleTpLabels = new QAction ( tr( "Taskpoints" ), this);
 #ifndef ANDROID
   actionToggleTpLabels->setShortcut(Qt::Key_T);
 #endif
@@ -1459,7 +1461,7 @@ void MainWindow::createActions()
   connect( actionToggleTpLabels, SIGNAL( toggled( bool ) ),
             this, SLOT( slotToggleTpLabels( bool ) ) );
 
-  actionToggleWpLabels = new QAction ( tr( "Waypoint" ), this);
+  actionToggleWpLabels = new QAction ( tr( "Waypoints" ), this);
 #ifndef ANDROID
   actionToggleWpLabels->setShortcut(Qt::Key_W);
 #endif
@@ -1469,15 +1471,25 @@ void MainWindow::createActions()
   connect( actionToggleWpLabels, SIGNAL( toggled( bool ) ),
             this, SLOT( slotToggleWpLabels( bool ) ) );
 
-  actionToggleLabelsInfo = new QAction (  tr( "Extra Info" ), this);
+  actionToggleHsLabels = new QAction ( tr( "Hotspots" ), this);
 #ifndef ANDROID
-  actionToggleLabelsInfo->setShortcut(Qt::Key_E);
+  actionToggleHsLabels->setShortcut(Qt::Key_J);
 #endif
-  actionToggleLabelsInfo->setCheckable(true);
-  actionToggleLabelsInfo->setChecked( GeneralConfig::instance()->getMapShowLabelsExtraInfo() );
-  addAction( actionToggleLabelsInfo );
-  connect( actionToggleLabelsInfo, SIGNAL( toggled( bool ) ),
-            this, SLOT( slotToggleLabelsInfo( bool ) ) );
+  actionToggleHsLabels->setCheckable(true);
+  actionToggleHsLabels->setChecked( GeneralConfig::instance()->getMapShowWaypointLabels() );
+  addAction( actionToggleHsLabels );
+  connect( actionToggleHsLabels, SIGNAL( toggled( bool ) ),
+            this, SLOT( slotToggleHsLabels( bool ) ) );
+
+  actionToggleLabelsElevation = new QAction (  tr( "Elevations" ), this);
+#ifndef ANDROID
+  actionToggleLabelsElevation->setShortcut(Qt::Key_E);
+#endif
+  actionToggleLabelsElevation->setCheckable(true);
+  actionToggleLabelsElevation->setChecked( GeneralConfig::instance()->getMapShowLabelsExtraInfo() );
+  addAction( actionToggleLabelsElevation );
+  connect( actionToggleLabelsElevation, SIGNAL( toggled( bool ) ),
+            this, SLOT( slotToggleLabelsElevation( bool ) ) );
 
   actionToggleLogging = new QAction( tr( "Logging" ), this );
 #ifndef ANDROID
@@ -1654,7 +1666,7 @@ void  MainWindow::toggleActions( const bool toggle )
   actionToggleNaLabels->setEnabled( toggle );
   actionToggleTpLabels->setEnabled( toggle );
   actionToggleWpLabels->setEnabled( toggle );
-  actionToggleLabelsInfo->setEnabled( toggle );
+  actionToggleHsLabels->setEnabled( toggle );
   actionToggleWindowSize->setEnabled( toggle );
   actionEnsureVisible->setEnabled( toggle );
   actionRemoveTarget->setEnabled( toggle );
@@ -2001,14 +2013,21 @@ void MainWindow::slotToggleWpLabels( bool toggle )
   Map::instance->scheduleRedraw(Map::waypoints);
 }
 
-void MainWindow::slotToggleLabelsInfo( bool toggle )
+void MainWindow::slotToggleHsLabels( bool toggle )
 {
   // save configuration change
-  GeneralConfig::instance()->setMapShowLabelsExtraInfo( toggle );
+  GeneralConfig::instance()->setMapShowHotspotLabels( toggle );
+  GeneralConfig::instance()->save();
+  Map::instance->scheduleRedraw(Map::hotspots);
+}
+
+void MainWindow::slotToggleLabelsElevation( bool toggle )
+{
+  // save configuration change
+  GeneralConfig::instance()->setMapShowLabelsElevation( toggle );
   GeneralConfig::instance()->save();
   Map::instance->scheduleRedraw(Map::airfields);
 }
-
 
 void MainWindow::slotToggleWindowSize()
 {
@@ -2488,7 +2507,8 @@ void MainWindow::slotReadconfig()
   actionToggleOlLabels->setChecked( conf->getMapShowOutLandingLabels() );
   actionToggleTpLabels->setChecked( conf->getMapShowTaskPointLabels() );
   actionToggleWpLabels->setChecked( conf->getMapShowWaypointLabels() );
-  actionToggleLabelsInfo->setChecked( conf->getMapShowLabelsExtraInfo() );
+  actionToggleHsLabels->setChecked( conf->getMapShowHotspotLabels() );
+  actionToggleLabelsElevation->setChecked( conf->getMapShowLabelsElevation() );
   actionToggleTrailDrawing->setChecked( conf->getMapDrawTrail() );
 
   // configure reconnect of GPS receiver in case of process stop
