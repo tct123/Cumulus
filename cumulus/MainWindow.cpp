@@ -1667,6 +1667,7 @@ void  MainWindow::toggleActions( const bool toggle )
   actionToggleTpLabels->setEnabled( toggle );
   actionToggleWpLabels->setEnabled( toggle );
   actionToggleHsLabels->setEnabled( toggle );
+  actionToggleLabelsElevation->setEnabled( toggle );
   actionToggleWindowSize->setEnabled( toggle );
   actionEnsureVisible->setEnabled( toggle );
   actionRemoveTarget->setEnabled( toggle );
