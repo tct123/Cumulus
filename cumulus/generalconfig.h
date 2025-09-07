@@ -85,7 +85,7 @@
 #define TrailLineColor QColor(Qt::black).name()
 
 // FlarmNet default URL
-#define FLARM_NET_URL "https://www.flarmnet.org/static/files/wfn/data.fln"
+#define FLARM_NET_URL "https://www.flarmnet.org/files/data.fln"
 
 class QTranslator;
 
