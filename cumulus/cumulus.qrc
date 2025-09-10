@@ -71,6 +71,7 @@
   <file>etc/Duo Discus XT (PIL).plr</file>
   <file>etc/EB 28 Edition.plr</file>
   <file>etc/EB 28.plr</file>
+  <file>etc/Example.plr.Readme</file>
   <file>etc/G 102 Astir CS.plr</file>
   <file>etc/G 102 Club Astir IIIb.plr</file>
   <file>etc/G 102 Standard Astir III.plr</file>
@@ -79,12 +80,14 @@
   <file>etc/G 104 Speed Astir.plr</file>
   <file>etc/Genesis II.plr</file>
   <file>etc/Glasfluegel 304.plr</file>
+  <file>etc/glider.pol</file>
   <file>etc/H-201 Std Libelle.plr</file>
   <file>etc/H-205 Club Libelle.plr</file>
   <file>etc/H-206 Hornet.plr</file>
   <file>etc/H-301 Libelle.plr</file>
   <file>etc/H-604 Kestrel.plr</file>
   <file>etc/HPH 304CZ.plr</file>
+  <file>etc/HPH 304TS Twin Shark.plr</file>
   <file>etc/IS-28 B2 (PAS).plr</file>
   <file>etc/IS-28 B2 (PIL).plr</file>
   <file>etc/IS-29D2.plr</file>
